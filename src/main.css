@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+:root {
+  --font-sans: 'Open Sans Variable', sans-serif;
+  --font-mono: 'Google Sans Code Variable', monospace;
+}
