@@ -15,7 +15,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - run: pnpm i
-      - run: npm run build --base /${{ github.event.repository.name }}/
+      - run: npm run build -- --base /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist/
