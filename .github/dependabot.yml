@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    commit-message:
+      prefix: '[dependabot] '
+    versioning-strategy: 'increase'
+    schedule:
+      interval: 'daily'
+    ignore:
+      - dependency-name: '@types/node'
+        update-types:
+          - 'version-update:semver-major'
+    groups:
+      default:
+        update-types:
+          - 'minor'
+          - 'patch'
