@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -15,7 +16,9 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - run: pnpm i
-      - run: npm run build -- --base /${{ github.event.repository.name }}/
+      - run: npm run build
+        env:
+          BASE_URL: /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist/
