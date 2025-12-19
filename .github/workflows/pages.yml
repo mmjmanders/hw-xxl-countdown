@@ -16,6 +16,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
       - run: pnpm i
+      - run: echo "VITE_PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}" | tee -a $GITHUB_WORKSPACE/.env.local
       - run: npm run build
         env:
           REPO_NAME: ${{ github.event.repository.name }}
