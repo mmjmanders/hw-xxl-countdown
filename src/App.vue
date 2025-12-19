@@ -3,6 +3,8 @@ import { computed, onBeforeUnmount, onMounted, readonly, ref } from 'vue'
 import dayjs from 'dayjs'
 import { usePexelsQuery } from '@/queries'
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const { VITE_HW_DATE } = import.meta.env
 const departureDate = readonly(ref(dayjs(VITE_HW_DATE, 'YYYY-MM-DD')))
@@ -24,7 +26,7 @@ onBeforeUnmount(() => {
   clearInterval(interval.value)
 })
 
-const { data: imageUrl } = usePexelsQuery()
+const { data: imageUrl, isLoading } = usePexelsQuery()
 
 const backgroundImage = computed(() => `url(${imageUrl.value})`)
 </script>
@@ -35,6 +37,9 @@ const backgroundImage = computed(() => `url(${imageUrl.value})`)
     v-if="imageUrl"
     :style="{ backgroundImage }"
   />
+  <div class="absolute left-0 top-0 w-screen h-screen flex justify-center items-center">
+    <FontAwesomeIcon :icon="faSpinner" :spin="true" size="4x" v-if="isLoading" />
+  </div>
   <div class="flex flex-col items-center gap-4 sm:gap-6 p-2">
     <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
     <div class="flex justify-between gap-4 sm:gap-6 w-full max-w-2xl">
