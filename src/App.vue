@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, readonly, ref } from 'vue'
 import dayjs from 'dayjs'
 import { usePexelsQuery } from '@/queries'
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 
 const { VITE_HW_DATE } = import.meta.env
 const departureDate = readonly(ref(dayjs(VITE_HW_DATE, 'YYYY-MM-DD')))
@@ -55,6 +56,7 @@ const backgroundImage = computed(() => `url(${imageUrl.value})`)
       </div>
     </div>
   </div>
+  <VueQueryDevtools />
 </template>
 
 <style scoped></style>
