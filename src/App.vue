@@ -24,22 +24,22 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-4">
+  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2">
     <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
-    <div class="flex justify-between gap-4 w-full max-w-2xl">
+    <div class="flex justify-between gap-4 sm:gap-6 w-full max-w-2xl">
       <div class="flex flex-col items-center gap-4">
         <span class="font-mono text-6xl sm:text-8xl">{{ days }}</span>
         <span class="text-xl sm:text-3xl">dagen</span>
       </div>
-      <div class="flex flex-col items-center gap-4">
+      <div class="flex flex-col items-center gap-4 sm:gap-6">
         <span class="font-mono text-6xl sm:text-8xl">{{ hours }}</span>
         <span class="text-xl sm:text-3xl">uren</span>
       </div>
-      <div class="flex flex-col items-center gap-4">
+      <div class="flex flex-col items-center gap-4 sm:gap-6">
         <span class="font-mono text-6xl sm:text-8xl">{{ minutes }}</span>
         <span class="text-xl sm:text-3xl">minuten</span>
       </div>
-      <div class="flex flex-col items-center gap-4">
+      <div class="flex flex-col items-center gap-4 sm:gap-6">
         <span class="font-mono text-6xl sm:text-8xl">{{ seconds }}</span>
         <span class="text-xl sm:text-3xl">seconden</span>
       </div>
