@@ -1,11 +1,50 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, readonly, ref } from 'vue'
+import dayjs from 'dayjs'
+
+const { VITE_HW_DATE } = import.meta.env
+const departureDate = readonly(ref(dayjs(VITE_HW_DATE, 'YYYY-MM-DD')))
+const interval = ref<number | undefined>(undefined)
+const now = ref(dayjs())
+const diff = computed(() => departureDate.value.diff(now.value))
+const days = computed(() => Math.floor(diff.value / (1000 * 60 * 60 * 24)))
+const hours = computed(() => Math.floor((diff.value / (1000 * 60 * 60)) % 24))
+const minutes = computed(() => Math.floor((diff.value / (1000 * 60)) % 60))
+const seconds = computed(() => Math.floor((diff.value / 1000) % 60))
+
+onMounted(() => {
+  interval.value = setInterval(() => {
+    now.value = dayjs()
+  }, 1000)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(interval.value)
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="flex flex-col items-center gap-4">
+    <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
+    <div class="flex justify-between gap-4 w-full max-w-2xl">
+      <div class="flex flex-col items-center gap-4">
+        <span class="font-mono text-6xl sm:text-8xl">{{ days }}</span>
+        <span class="text-xl sm:text-3xl">dagen</span>
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <span class="font-mono text-6xl sm:text-8xl">{{ hours }}</span>
+        <span class="text-xl sm:text-3xl">uren</span>
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <span class="font-mono text-6xl sm:text-8xl">{{ minutes }}</span>
+        <span class="text-xl sm:text-3xl">minuten</span>
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <span class="font-mono text-6xl sm:text-8xl">{{ seconds }}</span>
+        <span class="text-xl sm:text-3xl">seconden</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>
