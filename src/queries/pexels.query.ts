@@ -64,7 +64,7 @@ export const usePexelsQuery = () => {
     queryKey: ['search', city, orientation],
     queryFn: async () => {
       const res = await fetch(
-        `${apiUrl}/search?query=${city}&per_page=${PAGE_SIZE}&orientation=${orientation}`,
+        `${apiUrl}/search?query=${city}&per_page=${PAGE_SIZE}&size=small&orientation=${orientation}`,
         {
           headers: { Authorization: apiKey },
         },
