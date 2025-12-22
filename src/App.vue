@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, readonly, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, readonly, ref, watch } from 'vue'
 import dayjs from 'dayjs'
 import { usePexelsQuery } from '@/queries'
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
@@ -26,15 +26,32 @@ onBeforeUnmount(() => {
   clearInterval(interval.value)
 })
 
-const { data: imageUrl, isLoading } = usePexelsQuery()
+const { data: imageUrl, isLoading: isApiLoading } = usePexelsQuery()
+const isImageDownloaded = ref(false)
+const isLoading = computed(() => isApiLoading.value || !isImageDownloaded.value)
 
 const backgroundImage = computed(() => `url(${imageUrl.value})`)
+
+watch(
+  imageUrl,
+  (newUrl) => {
+    if (newUrl) {
+      isImageDownloaded.value = false
+      const image = new Image()
+      image.src = newUrl
+      image.onload = () => {
+        isImageDownloaded.value = true
+      }
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <div
     class="absolute opacity-10 left-0 top-0 w-screen h-screen bg-cover"
-    v-if="imageUrl"
+    v-if="imageUrl && isImageDownloaded"
     :style="{ backgroundImage }"
   />
   <div class="absolute left-0 top-0 w-screen h-screen flex justify-center items-center">
