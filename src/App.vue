@@ -55,9 +55,15 @@ watch(
     :style="{ backgroundImage }"
   />
   <div class="absolute left-0 top-0 w-screen h-screen flex justify-center items-center">
-    <FontAwesomeIcon :icon="faSpinner" :spin="true" size="4x" v-if="isLoading" />
+    <FontAwesomeIcon
+      :icon="faSpinner"
+      :spin="true"
+      size="4x"
+      v-if="isLoading"
+      class="text-neutral-950 dark:text-neutral-50"
+    />
   </div>
-  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2">
+  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2 text-neutral-950 dark:text-neutral-50">
     <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
     <div class="flex justify-between gap-4 sm:gap-6 w-full max-w-2xl">
       <div class="flex flex-col items-center gap-4">
