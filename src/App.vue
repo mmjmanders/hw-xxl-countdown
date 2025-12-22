@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, readonly, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, readonly, ref, watch } from 'vue'
 import dayjs from 'dayjs'
 import { usePexelsQuery } from '@/queries'
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
@@ -26,21 +26,44 @@ onBeforeUnmount(() => {
   clearInterval(interval.value)
 })
 
-const { data: imageUrl, isLoading } = usePexelsQuery()
+const { data: imageUrl, isLoading: isApiLoading } = usePexelsQuery()
+const isImageDownloaded = ref(false)
+const isLoading = computed(() => isApiLoading.value || !isImageDownloaded.value)
 
 const backgroundImage = computed(() => `url(${imageUrl.value})`)
+
+watch(
+  imageUrl,
+  (newUrl) => {
+    if (newUrl) {
+      isImageDownloaded.value = false
+      const image = new Image()
+      image.src = newUrl
+      image.onload = () => {
+        isImageDownloaded.value = true
+      }
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
   <div
     class="absolute opacity-10 left-0 top-0 w-screen h-screen bg-cover"
-    v-if="imageUrl"
+    v-if="imageUrl && isImageDownloaded"
     :style="{ backgroundImage }"
   />
   <div class="absolute left-0 top-0 w-screen h-screen flex justify-center items-center">
-    <FontAwesomeIcon :icon="faSpinner" :spin="true" size="4x" v-if="isLoading" />
+    <FontAwesomeIcon
+      :icon="faSpinner"
+      :spin="true"
+      size="4x"
+      v-if="isLoading"
+      class="text-neutral-950 dark:text-neutral-50"
+    />
   </div>
-  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2">
+  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2 text-neutral-950 dark:text-neutral-50">
     <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
     <div class="flex justify-between gap-4 sm:gap-6 w-full max-w-2xl">
       <div class="flex flex-col items-center gap-4">
