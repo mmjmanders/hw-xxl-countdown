@@ -24,7 +24,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2 text-neutral-950 dark:text-neutral-50">
+  <div class="flex flex-col items-center gap-4 sm:gap-6 p-2 text-ireland">
     <h1 class="text-3xl sm:text-5xl font-bold">HW XX(L) Countdown</h1>
     <div class="flex justify-between gap-4 sm:gap-6 w-full max-w-2xl">
       <div class="flex flex-col items-center gap-4 sm:gap-6">

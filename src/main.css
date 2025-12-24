@@ -4,3 +4,9 @@
   --font-sans: 'Open Sans Variable', sans-serif;
   --font-mono: 'Google Sans Code Variable', monospace;
 }
+
+@theme {
+  --color-ireland: #4b8b3b;
+  --color-light: #e5e5e5;
+  --color-dark: #3c3c3c;
+}
