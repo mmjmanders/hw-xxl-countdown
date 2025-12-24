@@ -11,6 +11,7 @@ export default defineConfig({
 			devOptions: {
 				enabled: true
 			},
+			strategies: 'generateSW',
 			registerType: 'autoUpdate',
 			manifest: {
 				name: 'HW XX(L) Countdown',
