@@ -28,20 +28,20 @@
 
 <div class="flex flex-col items-center gap-4 p-2 text-ireland sm:gap-6">
 	<h1 class="text-3xl font-bold sm:text-5xl">HW XX(L) Countdown</h1>
-	<div class="flex w-full max-w-2xl justify-between gap-4 sm:gap-6">
-		<div class="flex basis-1/4 flex-col items-center gap-4 sm:gap-6">
+	<div class="flex w-full max-w-2xl">
+		<div class="flex flex-1 flex-col items-center gap-4 sm:gap-6">
 			<span class="font-mono text-6xl sm:text-8xl">{days}</span>
 			<span class="text-xl sm:text-3xl">{daysText}</span>
 		</div>
-		<div class="flex basis-1/4 flex-col items-center gap-4 sm:gap-6">
+		<div class="flex flex-1 flex-col items-center gap-4 sm:gap-6">
 			<span class="font-mono text-6xl sm:text-8xl">{hours}</span>
 			<span class="text-xl sm:text-3xl">{hoursText}</span>
 		</div>
-		<div class="flex basis-1/4 flex-col items-center gap-4 sm:gap-6">
+		<div class="flex flex-1 flex-col items-center gap-4 sm:gap-6">
 			<span class="font-mono text-6xl sm:text-8xl">{minutes}</span>
 			<span class="text-xl sm:text-3xl">{minutesText}</span>
 		</div>
-		<div class="flex basis-1/4 flex-col items-center gap-4 sm:gap-6">
+		<div class="flex flex-1 flex-col items-center gap-4 sm:gap-6">
 			<span class="font-mono text-6xl sm:text-8xl">{seconds}</span>
 			<span class="text-xl sm:text-3xl">{secondsText}</span>
 		</div>
